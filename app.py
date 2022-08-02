@@ -1,6 +1,6 @@
 from transformers import ViTFeatureExtractor, ViTForImageClassification
 from flask import Flask, request, render_template
-import requests, PIL, pickle, os, sys
+import PIL, pickle, os, sys
 
 app = Flask(__name__)
 
@@ -41,7 +41,10 @@ def root():
                         outputs = transformer(**inputs)
                         logits = outputs.logits
                         predicted_class_idx = logits.argmax(-1).item()
-                        res = transformer.config.id2label[predicted_class_idx]
+                        res = transformer.config.id2label[predicted_class_idx].split(
+                            ', '
+                        )
+                        print(type(res))
                         return render_template('results.html', answer = res)
                 return render_template('base.html')
         return render_template('base.html')
