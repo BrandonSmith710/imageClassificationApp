@@ -9,9 +9,8 @@ feature_extractor = pickle.load(
 )
 
 # transormer predicts one of the 1000 ImageNet classes
-transformer = pickle.load(
-    open('transformer_model.h5', 'rb')
-)
+transformer = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224')
+
 
 @app.route('/', methods = ['POST', 'GET'])
 def root():
