@@ -89,15 +89,5 @@ def classify_multiple():
         return render_template('results2.html', answer = result)
     return render_template('base2.html')
 
-@app.route('/paste_and_classify', methods = ['POST', 'GET'])
-def paste_and_classify():
-    if request.method == 'POST':
-        image = request.form.get('pastedImage')
-        pass
-    pass
-
-
-
-
 if __name__ == '__main__':
     app.run(host = '127.0.0.1', port = 8080, debug = True)
