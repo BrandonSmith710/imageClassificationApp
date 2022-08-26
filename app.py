@@ -14,9 +14,11 @@ transformer = ViTForImageClassification.from_pretrained('google/vit-base-patch16
 
 @app.route('/', methods = ['POST', 'GET'])
 def root():
-    '''enter the directory and subdirectories(if any) separated by comma
+    '''
+    enter the directory and subdirectories(if any) separated by comma
     in the top field, and enter the image filename to classify in the
-    bottom field'''
+    bottom field
+    '''
 
     if request.method == 'POST':
         directories = request.form.get('directoryField').split(',')
@@ -49,6 +51,7 @@ def root():
                 return render_template('base.html')
         return render_template('base.html')
     return render_template('base.html')
+
 
 @app.route('/classify_multiple', methods = ['POST', 'GET'])
 def classify_multiple():
